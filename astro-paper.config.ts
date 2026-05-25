@@ -2,7 +2,7 @@ import { defineAstroPaperConfig } from "./src/types/config";
 
 export default defineAstroPaperConfig({
   site: {
-    url: "https://kritidutta.dev",          // TODO: update to your actual domain
+    url: "https://site-eight-delta-28.vercel.app", // TODO: swap for custom domain once purchased
     title: "Kriti Dutta",
     description:
       "Engineer at BlackRock building open infrastructure for financial AI.",
