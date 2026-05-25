@@ -29,13 +29,11 @@ export default defineAstroPaperConfig({
     search: "pagefind",
   },
   socials: [
-    { name: "github",   url: "https://github.com/kritidutta" },  // TODO: confirm handle
-    { name: "x",        url: "https://x.com/kritidutta" },        // TODO: confirm handle
-    { name: "linkedin", url: "https://www.linkedin.com/in/kritidutta/" }, // TODO: confirm
+    { name: "github",   url: "https://github.com/kritidutta01" },
+    { name: "linkedin", url: "https://www.linkedin.com/in/kriti-dutta-94b661107/" },
     { name: "mail",     url: "mailto:data.kriti.dutta@gmail.com" },
   ],
   shareLinks: [
-    { name: "x",        url: "https://x.com/intent/post?url=" },
     { name: "linkedin", url: "https://www.linkedin.com/sharing/share-offsite/?url=" },
     { name: "mail",     url: "mailto:?subject=See%20this%20post&body=" },
   ],

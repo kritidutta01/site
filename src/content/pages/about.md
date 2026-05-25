@@ -15,4 +15,4 @@ I write here every week — deep technical dives and honest building-in-public u
 
 If you're working on LLM evaluation, finance AI, or agent infrastructure, I'd like to hear from you.
 
-**Links:** [GitHub](https://github.com/kritidutta) · [X / Twitter](https://x.com/kritidutta) · [LinkedIn](https://www.linkedin.com/in/kritidutta/) · [Email](mailto:data.kriti.dutta@gmail.com)
+**Links:** [GitHub](https://github.com/kritidutta01) · [LinkedIn](https://www.linkedin.com/in/kriti-dutta-94b661107/) · [Email](mailto:data.kriti.dutta@gmail.com)
