@@ -12,9 +12,7 @@ draft: false
 
 I'm spending the next 13 weeks building three open-source projects at the intersection of finance and AI, in public. This post is the commitment device: the written record that forces me to be honest about what I think, what I'm building, and whether I was right.
 
-If you want the tl;dr: **two open benchmarks and a local agentic analyst**, all in the finance domain, all shipped by August 23. The sprint started May 25.
-
-Here's why.
+Two open benchmarks and a local agentic analyst, all in the finance domain, all shipped by August 23. Sprint started May 25.
 
 ---
 
@@ -44,16 +42,13 @@ Building specifically for finance — with real 10-K data, real adversarial fram
 
 ## What I'm shipping
 
-**sec-cli** (ships June 2026) — a fast CLI for SEC EDGAR filings, written in Go with a Python wrapper. The core idea: SEC filings are the most important public financial dataset in the world, and the tooling for accessing them programmatically is genuinely terrible. HTML from 2003, inconsistent table formats, no clean API. `sec-cli` provides a clean interface for LLM workflows — fetch a 10-K section, parse a table, run a diff between two fiscal years.
+**sec-cli** (ships June 2026) — a fast CLI for SEC EDGAR filings, written in Go with a Python wrapper. SEC filings are the most important public financial dataset in the world, and the tooling for accessing them programmatically is genuinely terrible. HTML from 2003, inconsistent table formats, no clean API. `sec-cli` provides a clean interface for LLM workflows — fetch a 10-K section, parse a table, run a diff between two fiscal years.
 
 The table parser is the real work. Building a held-out test set of 30 hand-extracted tables and hitting a documented accuracy number on it. That's the artifact that makes the project credible rather than just useful.
 
-**FinBench** (launches August 2026) — an open benchmark for how well LLMs do actual financial analysis. Two tasks at launch:
+**FinBench** (launches August 2026) — an open benchmark for how well LLMs do actual financial analysis. Two tasks at launch. Filing Extraction has 200 examples — each one asks the model to pull a specific number from a real 10-K, with an adversarially placed "plausible-but-wrong" decoy nearby. The failure mode I'm targeting is a model that finds something that *looks* right rather than what's actually right. Footnote Reconciliation has another 200 — map a body-statement line item to the correct footnote when similar-looking distractors are nearby. Sounds easy. It's not.
 
-- **Filing Extraction** (200 examples): extract specific numerical facts from real 10-K filings, with adversarially placed "plausible-but-wrong" decoy numbers nearby. The failure mode I'm targeting is the model that finds a number that looks right rather than the number that *is* right.
-- **Footnote Reconciliation** (200 examples): map a line item in the financial statements to the correct footnote, in the presence of similar-looking distractors. Sounds easy. It's not.
-
-Six frontier models evaluated at launch. Reproducible eval harness you can run on your own model. Methodology doc I'd defend in an interview.
+Six frontier models evaluated at launch, reproducible harness you can run on your own model, methodology doc I'd defend in an interview.
 
 The gap FinBench is filling: FinanceBench (the most-cited prior work) is QA-only, doesn't include adversarial construction, and hasn't been updated since 2023. FinBench is not a replacement — it's a harder, more specific benchmark for the failure modes that actually matter in deployed systems.
 
@@ -77,11 +72,11 @@ The secondary benefit: writing forces precision. I can't write a clear post abou
 
 ## What I expect to get wrong
 
-**The table parser will take longer than I think.** 10-K tables are notoriously inconsistent — nested headers, merged cells, multi-column spans, inline footnotes. I'm budgeting two weeks for the parser. I expect it'll feel two weeks behind for most of that time.
+The table parser will take longer than I think. 10-K tables are notoriously inconsistent — nested headers, merged cells, multi-column spans, inline footnotes. I'm budgeting two weeks. I expect it'll feel two weeks behind for most of that time.
 
-**The adversarial construction for FinBench will be harder to calibrate.** "Plausible-but-wrong" is a subjective bar. Too easy and the benchmark just measures reading comprehension; too hard and it measures something that never occurs in practice. Getting this calibrated against real analyst failure modes — rather than synthetic ones — requires iteration.
+The adversarial construction for FinBench will be harder to calibrate. "Plausible-but-wrong" is a subjective bar. Too easy and the benchmark just measures reading comprehension; too hard and it measures something that never occurs in practice. Getting this calibrated against real analyst failure modes — rather than synthetic ones — requires more iteration than I'm currently accounting for.
 
-**Qwen3-14B throughput at 4-bit quantization on the 5060 Ti may not be fast enough for Tearsheet's use case.** I have a working hypothesis that it'll be acceptable for single-document analysis. I don't have data on it yet. Week 5 will tell.
+Qwen3-14B throughput at 4-bit quantization on the 5060 Ti may not be fast enough for Tearsheet's use case. I have a working hypothesis that it'll be acceptable for single-document analysis. I don't have data on it yet. Week 5 will tell.
 
 ---
 
